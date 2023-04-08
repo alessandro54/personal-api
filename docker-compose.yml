@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./config/docker/Dockerfile.dev
+    ports:
+      - 8000:8000
+    environment:
+      - DB_HOST=mysql
+    volumes:
+      - .:/app
+    depends_on:
+      - mysql
+    restart: always
+
+  mysql:
+    image: mysql:8.0
+    env_file:
+      - ./config/docker/mysql.env
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: always
+volumes:
+  mysql_data:

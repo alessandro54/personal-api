@@ -1,6 +1,6 @@
 from datetime import datetime
 from sqlalchemy import Column, Integer, String, DateTime
-from app.db.database import Base
+from app.db.base import Base
 
 
 class Post(Base):
@@ -8,7 +8,7 @@ class Post(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String(100), index=True)
-    content = Column(String(1000), index=True)
+    content = Column(String(1000))
     created_at = Column(DateTime(), default=datetime.now())
     updated_at = Column(DateTime(), onupdate=datetime.now())
 

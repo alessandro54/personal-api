@@ -6,10 +6,9 @@ from pathlib import Path
 import os
 
 # Dynamically import all models
-models_path = str(Path(__file__).parent.parent.joinpath('models').resolve())
+models_path = str(Path(__file__).resolve().parents[1] / 'app/models')
 models = {model_file.split('.')[0]: getattr(__import__(f'app.models.{model_file.split(".")[0]}', fromlist=[model_file.split(".")[0]]), model_file.split(
     '.')[0].capitalize()) for model_file in os.listdir(models_path) if model_file.endswith('.py') and not model_file.startswith('__init__')}
-
 
 db_config = {
     "host": os.environ.get('DB_HOST', 'localhost'),

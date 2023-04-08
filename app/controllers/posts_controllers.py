@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
 from app.services.post_service import get_posts
-from app.db.util import get_db
+from db.util import get_db
 from sqlalchemy.orm import Session
 
 router = APIRouter(
